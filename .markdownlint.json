@@ -1,0 +1,7 @@
+{
+  "default": true,
+  "heading-style": {
+    "style": "atx"
+  },
+  "line-length": false
+}
