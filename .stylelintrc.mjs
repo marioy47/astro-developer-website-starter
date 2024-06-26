@@ -6,5 +6,6 @@ export default {
     "stylelint-config-standard",
     "stylelint-config-astro",
     "stylelint-prettier/recommended",
+    "stylelint-config-tailwindcss",
   ],
 };
