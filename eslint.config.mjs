@@ -25,4 +25,7 @@ export default [
 			"prettier/prettier": "warn", // Code style as "errors" and not "warnings" seem like an overkill to me.
 		},
 	},
+	{
+		ignores: ["src/env.d.ts", ".astro/"],
+	},
 ];
