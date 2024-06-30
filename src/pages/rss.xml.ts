@@ -8,7 +8,9 @@ import sanitizeHtml from "sanitize-html";
 const markdownParser = new MarkdownIt();
 
 export const GET = async (context: AstroConfig) => {
-	const entries = await getCollection("blog");
+	const entries = await getCollection("blog", (entry) => {
+		return import.meta.env.PROD ? !entry.data.draft : true;
+	});
 	return rss({
 		title: "Mario's Blog",
 		description: "Mario Yepes Portfolio and Blog",
