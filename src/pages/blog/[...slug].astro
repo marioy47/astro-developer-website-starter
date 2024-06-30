@@ -1,0 +1,25 @@
+---
+import type { MarkdownHeading } from "astro";
+import "../../styles/global.css";
+import { getCollection, type CollectionEntry } from "astro:content";
+
+type Props = CollectionEntry<"blog">;
+
+export const getStaticPaths = async () => {
+	const entries = await getCollection("blog");
+	return entries.map((entry) => ({
+		params: { slug: entry.slug, title: entry.data.title },
+		props: entry,
+	}));
+};
+
+const entry = Astro.props;
+const { Content, headings } = await entry.render();
+console.log(headings);
+---
+
+<main class="prose">
+	<h1>{entry.data.title}</h1>
+	{headings.reduce((prev: string, curr: MarkdownHeading) => prev + "|" + curr.slug, "Table of contents: ")}
+	<Content />
+</main>

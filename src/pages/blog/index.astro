@@ -1,0 +1,53 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+type YearlyPosts = {
+	[year: string]: CollectionEntry<"blog">[];
+};
+
+const posts = await getCollection("blog", ({ data }) => {
+	return import.meta.env.PROD ? !data.draft : true;
+});
+posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+/**
+ * Array of array of posts. The keys are the posts years.
+ */
+const postsByYear = posts.reduce((accum: YearlyPosts, post) => {
+	const year = post.data.date.getFullYear().toString();
+	if (!(year in accum)) {
+		accum[year] = [];
+	}
+	accum[year].push(post);
+	return accum;
+}, {});
+
+/**
+ * Years where there are posts, sorted descending.
+ */
+const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a));
+---
+
+<ul>
+	{
+		years.map((year) => (
+			<li>
+				<h2 class="text-2xl font-bold">{year}</h2>
+				<ul>
+					{postsByYear[year].map((post) => (
+						<li>
+							<a href={`/blog/${post.slug}`}>
+								&rarr; {post.data.title} - {post.data.date.toDateString()}{" "}
+							</a>
+						</li>
+					))}
+				</ul>
+			</li>
+		))
+	}
+</ul>
+
+<style>
+	a {
+		@apply hover:underline;
+	}
+</style>
