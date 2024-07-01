@@ -5,6 +5,7 @@ import "../../styles/global.css";
 import { getCollection, type CollectionEntry } from "astro:content";
 import Toc from "../../components/table-of-contest.astro";
 import FormattedDate from "../../components/formatted-date.astro";
+import ReadingTime from "../../components/reading-time.astro";
 
 type Props = CollectionEntry<"blog">;
 
@@ -22,6 +23,7 @@ const { Content, headings } = await entry.render();
 
 <main class="prose">
 	<h1>{entry.data.title}</h1>
+	<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
 	<FormattedDate date={entry.data.date} />
 	<Toc headings={headings} />
 	<Content />
