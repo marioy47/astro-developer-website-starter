@@ -1,0 +1,52 @@
+---
+// src/components/table-of-contents.astro
+
+import type { MarkdownHeading } from "astro";
+
+interface Props {
+	headings: MarkdownHeading[];
+	title?: string;
+	open?: boolean;
+}
+type MarkdownSubHeading = MarkdownHeading & {
+	subheadings: MarkdownHeading[];
+};
+
+const { headings, title = "Table Of Contents", open = true } = Astro.props;
+
+/**
+ * @link https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3
+ */
+const grouppedHeadings = headings.reduce((accum, heading) => {
+	if (2 === heading.depth) {
+		accum.push({ ...heading, subheadings: [] });
+	} else {
+		accum.at(-1)?.subheadings.push(heading);
+	}
+	return accum;
+}, [] as MarkdownSubHeading[]);
+---
+
+<details open={open}>
+	<summary>{title}</summary>
+	<nav>
+		<ol>
+			{
+				grouppedHeadings.map((heading) => (
+					<li>
+						<a href={`#${heading.slug}`}>{heading.text}</a>
+						{heading.subheadings.length > 0 && (
+							<ol>
+								{heading.subheadings.map((subheading) => (
+									<li>
+										<a href={`#${subheading.slug}`}>{subheading.text}</a>
+									</li>
+								))}
+							</ol>
+						)}
+					</li>
+				))
+			}
+		</ol>
+	</nav>
+</details>

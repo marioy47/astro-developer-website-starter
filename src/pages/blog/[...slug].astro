@@ -1,7 +1,9 @@
 ---
-import type { MarkdownHeading } from "astro";
+// src/pages/blog/[p...slug].astro
+
 import "../../styles/global.css";
 import { getCollection, type CollectionEntry } from "astro:content";
+import Toc from "../../components/table-of-contest.astro";
 
 type Props = CollectionEntry<"blog">;
 
@@ -15,11 +17,16 @@ export const getStaticPaths = async () => {
 
 const entry = Astro.props;
 const { Content, headings } = await entry.render();
-console.log(headings);
 ---
 
 <main class="prose">
 	<h1>{entry.data.title}</h1>
-	{headings.reduce((prev: string, curr: MarkdownHeading) => prev + "|" + curr.slug, "Table of contents: ")}
+	<Toc headings={headings} />
 	<Content />
 </main>
+
+<style>
+	main {
+		scroll-behavior: smooth;
+	}
+</style>
