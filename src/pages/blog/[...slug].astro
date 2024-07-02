@@ -35,5 +35,9 @@ const { Content, headings } = await entry.render();
 			<Toc headings={headings} />
 			<Content />
 		</main>
+		<script>
+			import { addCopyCodeButtons } from "../../scripts/copy-code-button";
+			addCopyCodeButtons("📋", "✅");
+		</script>
 	</body>
 </html>
