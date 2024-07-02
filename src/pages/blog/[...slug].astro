@@ -21,16 +21,19 @@ const entry = Astro.props;
 const { Content, headings } = await entry.render();
 ---
 
-<main class="prose">
-	<h1>{entry.data.title}</h1>
-	<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
-	<FormattedDate date={entry.data.date} />
-	<Toc headings={headings} />
-	<Content />
-</main>
-
-<style>
-	main {
-		scroll-behavior: smooth;
-	}
-</style>
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{entry.data.title}</title>
+	</head>
+	<body>
+		<main class="prose">
+			<h1>{entry.data.title}</h1>
+			<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
+			<FormattedDate date={entry.data.date} />
+			<Toc headings={headings} />
+			<Content />
+		</main>
+	</body>
+</html>
