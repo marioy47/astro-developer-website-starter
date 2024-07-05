@@ -2,18 +2,38 @@
 // src/pages/index.astro
 import Search from "astro-pagefind/components/Search";
 import ToggleLightDarkMode from "../components/toggle-light-dark-mode.astro";
+import { SEO, type SEOProps } from "astro-seo";
 
 import "../styles/global.css";
+
+const headItems: SEOProps = {
+	title: "My Site Title",
+	description: "My Site Description",
+	openGraph: {
+		basic: {
+			title: "OG Title",
+			type: "website",
+			image: "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
+		},
+	},
+	twitter: { creator: "@marioy47" },
+	extend: {
+		meta: [
+			{ property: "og:type", content: "website" },
+			{ name: "generator", content: Astro.generator },
+			{ name: "viewport", content: "width=device-width" },
+		],
+		link: [
+			{ rel: "alternate", type: "application/rss+xml", title: "My Blog Site", href: new URL("rss.xml", Astro.site).toString() },
+			{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+		],
+	},
+};
 ---
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="alternate" type="application/rss+xml" title="My Blog Site" href={new URL("rss.xml", Astro.site)} />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<SEO {...headItems} />
 	</head>
 	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
 		<h1>Astro</h1>
