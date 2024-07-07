@@ -1,18 +1,17 @@
 // astro.config.mjs
 
+import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 
-/*
- * @link https://astro.build/config
- */
+// https://astro.build/config
 export default defineConfig({
 	site: "https://marioyepes.com/",
 	build: {
 		format: "directory",
 	},
-	integrations: [tailwind(), pagefind()],
+	integrations: [tailwind(), pagefind(), sitemap()],
 	markdown: {
 		shikiConfig: {
 			// List of themes here: https://shiki.style/themes
