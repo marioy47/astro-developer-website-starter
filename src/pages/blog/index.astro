@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+
 type YearlyPosts = {
 	[year: string]: CollectionEntry<"blog">[];
 };
@@ -27,27 +28,26 @@ const postsByYear = posts.reduce((accum: YearlyPosts, post) => {
 const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
-<ul>
-	{
-		years.map((year) => (
-			<li>
-				<h2 class="text-2xl font-bold">{year}</h2>
-				<ul>
-					{postsByYear[year].map((post) => (
-						<li>
-							<a href={`/blog/${post.slug}`}>
-								&rarr; {post.data.title} - {post.data.date.toDateString()}{" "}
-							</a>
-						</li>
-					))}
-				</ul>
-			</li>
-		))
-	}
-</ul>
-
-<style>
-	a {
-		@apply hover:underline;
-	}
-</style>
+<head>
+	<link type="text/css" rel="stylesheet" href="../../styles/global.css" />
+</head>
+<body>
+	<ul>
+		{
+			years.map((year) => (
+				<li>
+					<h2 class="text-2xl font-bold">{year}</h2>
+					<ul>
+						{postsByYear[year].map((post) => (
+							<li>
+								<a href={`/blog/${post.slug}`} class="hover:underline">
+									&rarr; {post.data.title} - {post.data.date.toDateString()}{" "}
+								</a>
+							</li>
+						))}
+					</ul>
+				</li>
+			))
+		}
+	</ul>
+</body>
