@@ -45,3 +45,14 @@
 		font-size: 0.938rem;
 	}
 }
+
+/**
+ * Make shiki use class-based theme change
+ *
+ * @link https://shiki.matsu.io/guide/dual-themes#class-based-dark-mode
+ */
+html.dark .astro-code,
+html.dark .astro-code span {
+	color: var(--shiki-dark) !important;
+	background-color: var(--shiki-dark-bg) !important;
+}
