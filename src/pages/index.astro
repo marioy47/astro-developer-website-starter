@@ -8,18 +8,26 @@ import "../styles/global.css";
 
 const headItems: SEOProps = {
 	title: "My Site Title",
-	description: "My Site Description",
+	titleTemplate: "%s | My Portfolio site",
+	description: "This is my blog and online portfolio",
 	openGraph: {
 		basic: {
-			title: "OG Title",
 			type: "website",
+			title: "OG Title",
 			image: "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
 		},
+		article: {
+			authors: ["Mario Yepes"],
+			tags: [],
+		},
 	},
-	twitter: { creator: "@marioy47" },
+	twitter: {
+		card: "summary_large_image",
+		image: "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
+		creator: "@marioy47",
+	},
 	extend: {
 		meta: [
-			{ property: "og:type", content: "website" },
 			{ name: "generator", content: Astro.generator },
 			{ name: "viewport", content: "width=device-width" },
 		],
