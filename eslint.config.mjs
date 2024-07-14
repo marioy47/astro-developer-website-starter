@@ -11,7 +11,7 @@ import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended"
 /** @type {import("typescript-eslint").Config} */
 export default [
 	{ files: ["**/*.{js,mjs,cjs,ts,astro}"] }, // Add the astro extension
-	{ languageOptions: { globals: globals.browser } },
+	{ languageOptions: { globals: { ...globals.browser, ...globals.node } } },
 	pluginJs.configs.recommended,
 	...tseslint.configs.recommended,
 	// Add the following plugin rules

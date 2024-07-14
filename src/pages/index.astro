@@ -6,25 +6,27 @@ import { SEO, type SEOProps } from "astro-seo";
 
 import "../styles/global.css";
 
+const { title, description, image, authors } = Astro.props;
+
 const headItems: SEOProps = {
-	title: "My Site Title",
-	titleTemplate: "%s | My Portfolio site",
-	description: "This is my blog and online portfolio",
+	title: title ?? import.meta.env.SITE_TITLE ?? "No title",
+	titleTemplate: import.meta.env.SITE_TITLE_TEMPLATE ?? "%s | My Site",
+	description: description ?? import.meta.env.SITE_DESCRIPTION ?? "This is my site",
 	openGraph: {
 		basic: {
 			type: "website",
-			title: "OG Title",
-			image: "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
+			title: title ?? import.meta.env.SITE_TITLE ?? "Undefined title",
+			image: image ?? import.meta.env.SITE_IMAGE ?? "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
 		},
 		article: {
-			authors: ["Mario Yepes"],
+			authors: authors ?? ["Mario Yepes"],
 			tags: [],
 		},
 	},
 	twitter: {
 		card: "summary_large_image",
-		image: "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
-		creator: "@marioy47",
+		image: image ?? import.meta.env.TWITTER_IMAGE ?? "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
+		creator: import.meta.env.TWITTER_CREATOR ?? "@marioy47",
 	},
 	extend: {
 		meta: [
