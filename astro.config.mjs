@@ -4,6 +4,7 @@ import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import { transformerMetaHighlight } from "@shikijs/transformers";
+import icon from "astro-icon";
 import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
@@ -16,7 +17,7 @@ export default defineConfig({
 	build: {
 		format: "directory",
 	},
-	integrations: [tailwind(), pagefind(), sitemap(), partytown()],
+	integrations: [tailwind(), pagefind(), sitemap(), partytown(), icon()],
 	markdown: {
 		shikiConfig: {
 			// List of themes here: https://shiki.style/themes
@@ -28,3 +29,4 @@ export default defineConfig({
 		},
 	},
 });
+

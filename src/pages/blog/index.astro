@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import { ViewTransitions } from "astro:transitions";
 import { getCollection, type CollectionEntry } from "astro:content";
 import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
@@ -36,6 +37,7 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 	<ViewTransitions />
 </head>
 <body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+	<Icon name="tabler:brand-astro" size={32} title="Blog Logo" />
 	<ToggleLightDarkMode />
 	<h1>Blog entries</h1>
 	<ul>
