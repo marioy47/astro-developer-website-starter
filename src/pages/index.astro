@@ -2,12 +2,13 @@
 // src/pages/index.astro
 import Search from "astro-pagefind/components/Search";
 import ToggleLightDarkMode from "../components/toggle-light-dark-mode.astro";
+import { GoogleTagmanager } from "@digi4care/astro-google-tagmanager";
 import { SEO, type SEOProps } from "astro-seo";
 
 import "../styles/global.css";
 
+// It would make more sense to create a Layout and/or components to handle the `<head>`
 const { title, description, image, authors } = Astro.props;
-
 const headItems: SEOProps = {
 	title: title ?? import.meta.env.SITE_TITLE ?? "No title",
 	titleTemplate: import.meta.env.SITE_TITLE_TEMPLATE ?? "%s | My Site",
@@ -26,7 +27,7 @@ const headItems: SEOProps = {
 	twitter: {
 		card: "summary_large_image",
 		image: image ?? import.meta.env.TWITTER_IMAGE ?? "https://gravatar.com/avatar/b7635ffd87fc354b559fc1e4aef1a981?s=500",
-		creator: import.meta.env.TWITTER_CREATOR ?? "@marioy47",
+		creator: authors?.join(" ") ?? import.meta.env.TWITTER_CREATOR ?? "@marioy47",
 	},
 	extend: {
 		meta: [
@@ -34,8 +35,13 @@ const headItems: SEOProps = {
 			{ name: "viewport", content: "width=device-width" },
 		],
 		link: [
-			{ rel: "alternate", type: "application/rss+xml", title: "My Blog Site", href: new URL("rss.xml", Astro.site).toString() },
+			{ rel: "alternate", type: "application/rss+xml", title: `RSS feed for ${title ?? "this site"}`, href: new URL("rss.xml", Astro.site).toString() },
 			{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+			{ rel: "preload", href: "/fonts/fira-sans-v17-latin-300.woff2" },
+			{ rel: "preload", href: "/fonts/fira-sans-v17-latin-300italic.woff2" },
+			{ rel: "preload", href: "/fonts/fira-sans-v17-latin-700.woff2" },
+			{ rel: "preload", href: "/fonts/fira-sans-v17-latin-700italic.woff2" },
+			{ rel: "preload", href: "/fonts/jetbrains-mono-v18-latin-regular.woff2" },
 			{ rel: "sitemap", href: "/sitemap-index.xml" },
 		],
 	},
@@ -45,6 +51,7 @@ const headItems: SEOProps = {
 <html lang="en">
 	<head>
 		<SEO {...headItems} />
+		<GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} />
 	</head>
 	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
 		<h1>Astro</h1>

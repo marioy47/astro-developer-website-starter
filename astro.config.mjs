@@ -1,5 +1,6 @@
 // astro.config.mjs
 
+import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import pagefind from "astro-pagefind";
@@ -14,7 +15,7 @@ export default defineConfig({
 	build: {
 		format: "directory",
 	},
-	integrations: [tailwind(), pagefind(), sitemap()],
+	integrations: [tailwind(), pagefind(), sitemap(), partytown()],
 	markdown: {
 		shikiConfig: {
 			// List of themes here: https://shiki.style/themes
