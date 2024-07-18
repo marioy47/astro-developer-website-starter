@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import { getCollection, type CollectionEntry } from "astro:content";
 import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
 import "../../styles/global.css";
@@ -32,6 +33,7 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 
 <head>
 	<title>Blog Posts</title>
+	<ViewTransitions />
 </head>
 <body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
 	<ToggleLightDarkMode />

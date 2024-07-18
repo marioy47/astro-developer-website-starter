@@ -2,6 +2,7 @@
 // src/pages/blog/[p...slug].astro
 
 import { getCollection, type CollectionEntry } from "astro:content";
+import { ViewTransitions } from "astro:transitions";
 import FormattedDate from "../../components/formatted-date.astro";
 import ReadingTime from "../../components/reading-time.astro";
 import Toc from "../../components/table-of-contents.astro";
@@ -27,6 +28,7 @@ const { Content, headings } = await entry.render();
 <html lang="en">
 	<head>
 		<title>{entry.data.title}</title>
+		<ViewTransitions />
 	</head>
 	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
 		<ToggleLightDarkMode title="Toggle light or dark mode" />
