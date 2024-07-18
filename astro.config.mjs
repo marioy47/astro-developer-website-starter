@@ -3,6 +3,7 @@
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
+import { transformerMetaHighlight } from "@shikijs/transformers";
 import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
 import { loadEnv } from "vite";
@@ -23,6 +24,7 @@ export default defineConfig({
 				dark: "rose-pine-dawn",
 				light: "rose-pine-moon",
 			},
+			transformers: [transformerMetaHighlight()],
 		},
 	},
 });
