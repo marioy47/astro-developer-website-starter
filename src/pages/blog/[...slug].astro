@@ -1,11 +1,13 @@
 ---
 // src/pages/blog/[p...slug].astro
 
-import "../../styles/global.css";
 import { getCollection, type CollectionEntry } from "astro:content";
-import Toc from "../../components/table-of-contents.astro";
 import FormattedDate from "../../components/formatted-date.astro";
 import ReadingTime from "../../components/reading-time.astro";
+import Toc from "../../components/table-of-contents.astro";
+import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
+
+import "../../styles/global.css";
 
 type Props = CollectionEntry<"blog">;
 
@@ -26,14 +28,15 @@ const { Content, headings } = await entry.render();
 	<head>
 		<title>{entry.data.title}</title>
 	</head>
-	<body>
-		<main class="prose">
+	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+		<ToggleLightDarkMode title="Toggle light or dark mode" />
+		<article class="prose prose-stone mx-auto lg:prose-xl dark:prose-invert">
 			<h1>{entry.data.title}</h1>
 			<ReadingTime before="Reading Time" after="minutes" content={entry.body} />
 			<FormattedDate date={entry.data.date} />
 			<Toc headings={headings} />
 			<Content />
-		</main>
+		</article>
 		<script>
 			import { addCopyCodeButtons } from "../../scripts/copy-code-button";
 			addCopyCodeButtons("📋", "✅");

@@ -1,5 +1,6 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
+import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
 import "../../styles/global.css";
 
 type YearlyPosts = {
@@ -32,16 +33,18 @@ const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a))
 <head>
 	<title>Blog Posts</title>
 </head>
-<body>
+<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+	<ToggleLightDarkMode />
+	<h1>Blog entries</h1>
 	<ul>
 		{
 			years.map((year) => (
 				<li>
-					<h2 class="text-2xl font-bold">{year}</h2>
+					<h2>{year}</h2>
 					<ul>
 						{postsByYear[year].map((post) => (
 							<li>
-								<a href={`/blog/${post.slug}`} class="hover:underline">
+								<a href={`/blog/${post.slug}`}>
 									&rarr; {post.data.title} - {post.data.date.toDateString()}{" "}
 								</a>
 							</li>

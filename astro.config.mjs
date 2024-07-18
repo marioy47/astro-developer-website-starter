@@ -20,8 +20,8 @@ export default defineConfig({
 		shikiConfig: {
 			// List of themes here: https://shiki.style/themes
 			themes: {
-				light: "rose-pine-dawn",
-				dark: "rose-pine-moon",
+				dark: "rose-pine-dawn",
+				light: "rose-pine-moon",
 			},
 		},
 	},

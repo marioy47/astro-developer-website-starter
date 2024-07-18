@@ -1,9 +1,9 @@
 ---
 // src/pages/index.astro
 import Search from "astro-pagefind/components/Search";
-import ToggleLightDarkMode from "../components/toggle-light-dark-mode.astro";
 import { GoogleTagmanager } from "@digi4care/astro-google-tagmanager";
 import { SEO, type SEOProps } from "astro-seo";
+import ToggleLightDarkMode from "../components/toggle-light-dark-mode.astro";
 
 import "../styles/global.css";
 
@@ -54,8 +54,9 @@ const headItems: SEOProps = {
 		<GoogleTagmanager id={import.meta.env.GTM_VERIFICATION_ID} partytown={true} />
 	</head>
 	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
-		<h1>Astro</h1>
 		<ToggleLightDarkMode title="Toggle light or dark mode" />
+		<h1>A Developer Blog</h1>
 		<Search />
+		<a href="blog/">Go to the Blog</a>
 	</body>
 </html>
