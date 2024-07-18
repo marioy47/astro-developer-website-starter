@@ -1,5 +1,4 @@
 ---
-import "../../styles/global.css";
 import { getCollection, type CollectionEntry } from "astro:content";
 import "../../styles/global.css";
 
@@ -25,13 +24,13 @@ const postsByYear = posts.reduce((accum: YearlyPosts, post) => {
 }, {});
 
 /**
- * Years where there are posts, sorted descending.
+ * Array of years: `["2024", "2021", "2020"]`. Just the years where blog posts where found.
  */
 const years = Object.keys(postsByYear).sort((a, b) => parseInt(b) - parseInt(a));
 ---
 
 <head>
-	<link type="text/css" rel="stylesheet" href="../../styles/global.css" />
+	<title>Blog Posts</title>
 </head>
 <body>
 	<ul>
