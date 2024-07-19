@@ -3,18 +3,32 @@
 
 import type { MarkdownHeading } from "astro";
 
+/**
+ * @param {MarkdownHeading[]} headings Array of objects with the heading on the document.
+ * @param {string} title The heading or title in top of the Table of Comments
+ * @param {boolean} open Should the table of contents be expanded or collapsed
+ * @param {string} id The `id` HTML attribute we want for the TOC `<details>` element.
+ * @param {string} className The `class` HTML attribute for the `<details>` element.
+ */
 interface Props {
 	headings: MarkdownHeading[];
 	title?: string;
 	open?: boolean;
+	id?: string;
+	className?: string;
 }
+/**
+ * @param {MarkdownHeading[]} subheadings Level 2 headings.
+ */
 type MarkdownSubHeading = MarkdownHeading & {
 	subheadings: MarkdownHeading[];
 };
 
-const { headings, title = "Table Of Contents", open = true } = Astro.props;
+const { headings, title = "Table Of Contents", open = true, id, className } = Astro.props;
 
 /**
+ * Extract level 2 and level 3 headgins.
+ *
  * @link https://gist.github.com/maciejpedzich/000da5c6b3a91290d49a91c9fe940ca3
  */
 const grouppedHeadings = headings.reduce((accum, heading) => {
@@ -27,7 +41,7 @@ const grouppedHeadings = headings.reduce((accum, heading) => {
 }, [] as MarkdownSubHeading[]);
 ---
 
-<details open={open}>
+<details open={open} id={id} class={className}>
 	<summary>{title}</summary>
 	<nav>
 		<ol>
