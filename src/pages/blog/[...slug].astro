@@ -1,12 +1,13 @@
 ---
 // src/pages/blog/[p...slug].astro
 
-import { getCollection, type CollectionEntry } from "astro:content";
-import { ViewTransitions } from "astro:transitions";
 import FormattedDate from "../../components/formatted-date.astro";
 import ReadingTime from "../../components/reading-time.astro";
+import ScrollToTop from "../../components/scroll-to-top.astro";
 import Toc from "../../components/table-of-contents.astro";
 import ToggleLightDarkMode from "../../components/toggle-light-dark-mode.astro";
+import { ViewTransitions } from "astro:transitions";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 import "../../styles/global.css";
 
@@ -25,7 +26,7 @@ const { Content, headings } = await entry.render();
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 	<head>
 		<title>{entry.data.title}</title>
 		<ViewTransitions />
@@ -39,6 +40,7 @@ const { Content, headings } = await entry.render();
 			<Toc headings={headings} />
 			<Content />
 		</article>
+		<ScrollToTop content="Scroll To TOC" top={50} />
 		<script>
 			import { addCopyCodeButtons } from "../../scripts/copy-code-button";
 			addCopyCodeButtons("📋", "✅");
