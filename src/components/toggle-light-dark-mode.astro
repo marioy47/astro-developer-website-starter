@@ -114,7 +114,9 @@ const { title = "Toggle light-dark mode" } = Astro.props;
 		}
 	};
 
-	// Call the just created functions.
-	setInitialInputStatus(".theme-toggle");
-	toggleDarkModeIfChecked(".theme-toggle");
+	// We need to call both functions AFTER the transition has finished
+	document.addEventListener("astro:page-load", () => {
+		setInitialInputStatus(".theme-toggle");
+		toggleDarkModeIfChecked(".theme-toggle");
+	});
 </script>
