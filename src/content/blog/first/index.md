@@ -61,6 +61,10 @@ console.error("This line should be highlighted");
 
 ![And Another Image](https://loremflickr.com/1920/1024)
 
+### Local Image
+
+![Cartagena by Pedro Szekely](./cartagena-by-pedro-szekely.jpg)
+
 ## Lists
 
 ### Ordered List

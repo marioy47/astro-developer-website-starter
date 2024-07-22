@@ -7,6 +7,7 @@ import { transformerMetaHighlight } from "@shikijs/transformers";
 import icon from "astro-icon";
 import pagefind from "astro-pagefind";
 import { defineConfig } from "astro/config";
+import remarkUnwrapImages from "remark-unwrap-images";
 import { loadEnv } from "vite";
 
 const { SITE_URL } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
@@ -27,6 +28,6 @@ export default defineConfig({
 			},
 			transformers: [transformerMetaHighlight()],
 		},
+		remarkPlugins: [remarkUnwrapImages],
 	},
 });
-
