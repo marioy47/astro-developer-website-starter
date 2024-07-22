@@ -31,7 +31,7 @@ const { Content, headings } = await entry.render();
 		<title>{entry.data.title}</title>
 		<ViewTransitions />
 	</head>
-	<body class="bg-gray-200 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
+	<body class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-200">
 		<ToggleLightDarkMode title="Toggle light or dark mode" />
 		<article class="prose prose-stone mx-auto lg:prose-xl dark:prose-invert">
 			<h1>{entry.data.title}</h1>
@@ -43,7 +43,9 @@ const { Content, headings } = await entry.render();
 		<ScrollToTop content="Scroll To TOC" top={50} />
 		<script>
 			import { addCopyCodeButtons } from "../../scripts/copy-code-button";
+			import { addClickablePopupDialogToElements } from "../../scripts/add-clickable-popup-dialog-to-elements";
 			addCopyCodeButtons("📋", "✅");
+			addClickablePopupDialogToElements("article img");
 		</script>
 	</body>
 </html>

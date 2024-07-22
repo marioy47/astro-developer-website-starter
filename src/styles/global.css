@@ -23,6 +23,11 @@ html.dark .astro-code span {
 	background-color: black !important;
 }
 
+html.dark .astro-code .line.highlighted span,
 html.dark .astro-code span.line.highlighted {
 	background-color: white !important;
+}
+
+dialog::backdrop {
+	backdrop-filter: blur(4px);
 }
